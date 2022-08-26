@@ -1,0 +1,77 @@
+package week2.day2assignment;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class CreateLead {
+	private static final WebElement Element = null;
+	private static final WebElement ElementSourceDropDown = null;
+	private static final WebElement Source = null;
+
+	public static void main(String[] args) {
+		WebDriverManager.chromedriver().setup();
+		ChromeDriver driver= new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("http://leaftaps.com/opentaps/control/main");
+		
+		WebElement usernameElement = driver.findElement(By.id("username"));
+		usernameElement.sendKeys("Demosalesmanager");
+	
+		WebElement PasswordElement = driver.findElement(By.id("password"));
+		PasswordElement.sendKeys("crmsfa");
+		
+		WebElement loginbutton = driver.findElement(By.className("decorativeSubmit"));
+		loginbutton.click();
+		
+		WebElement CRMSFAElement = driver.findElement(By.linkText("CRM/SFA"));
+		CRMSFAElement.click();
+		
+		WebElement ElementLead = driver.findElement(By.linkText("Leads"));
+		ElementLead.click();
+		
+		WebElement ElementCreateLead = driver.findElement(By.linkText("Create Lead"));
+		ElementCreateLead.click();
+		
+		WebElement ElementcompanyName = driver.findElement(By.id("createLeadForm_companyName"));
+		ElementcompanyName.sendKeys("Testleaf");
+		
+		WebElement ElementfirstName = driver.findElement(By.id("createLeadForm_firstName"));
+		ElementfirstName.sendKeys("srimathi");
+		
+		WebElement ElementlastName = driver.findElement(By.id("createLeadForm_lastName"));
+		ElementlastName.sendKeys("Dhayalan");
+		
+	    WebElement ElementSourceDropDown = driver.findElement(By.id("createLeadForm_dataSourceId"));
+		Select dd = new Select(ElementSourceDropDown);
+		dd.selectByVisibleText("Employee");
+		
+		WebElement ElementMarketingCompaignID = driver.findElement(By.id("createLeadForm_marketingCampaignId"));
+		Select dd1 = new Select(ElementMarketingCompaignID);
+		dd1.selectByValue("9001");
+		
+		WebElement ElementOwnership = driver.findElement(By.id("createLeadForm_ownershipEnumId"));
+		Select dd2 = new Select(ElementOwnership);
+		dd2.selectByIndex(5);
+		
+		WebElement ElementCountry = driver.findElement(By.id("createLeadForm_generalCountryGeoId"));
+		Select dd3 = new Select(ElementCountry);
+		dd3.selectByVisibleText("India");
+		
+		WebElement ElementCreateLeadButton = driver.findElement(By.name("submitButton"));
+		ElementCreateLeadButton.click();
+		
+		String title = driver.getTitle();
+		System.out.println(title);
+			
+		
+		
+	}
+
+}
+
