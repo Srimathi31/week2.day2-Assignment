@@ -1,0 +1,86 @@
+package week2.day2assignment;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class NTCreateAccount {
+	public static void main(String[] args) {
+		WebDriverManager.chromedriver().setup();
+		ChromeDriver driver = new ChromeDriver();
+	    driver.manage().window().maximize();
+	    driver.get("http://leaftaps.com/opentaps/control/login");
+	    
+	    
+	    WebElement Elementusername = driver.findElement(By.id("username"));
+		Elementusername.sendKeys("DemoCSR");
+		
+		WebElement Elementpassword = driver.findElement(By.id("password"));
+		Elementpassword.sendKeys("crmsfa");
+		
+		WebElement Elementloginbutton = driver.findElement(By.className("decorativeSubmit"));
+		Elementloginbutton.click();
+		
+		WebElement ElementCRMSFA = driver.findElement(By.linkText("CRM/SFA"));
+		ElementCRMSFA.click();
+		
+		WebElement ElementAccountbutton = driver.findElement(By.linkText("Accounts"));
+		ElementAccountbutton.click();
+		
+		WebElement ElementCreateAccountbutton = driver.findElement(By.linkText("Create Account"));
+		ElementCreateAccountbutton.click();
+		
+		WebElement ElementcurrencyPrefered = driver.findElement(By.id("currencyUomId"));
+		Select dd = new Select(ElementcurrencyPrefered);
+		dd.selectByValue("INR");
+		
+		WebElement ElementDescription = driver.findElement(By.name("description"));
+		ElementDescription.sendKeys("NRI Account");
+		
+		WebElement ElementLocalname = driver.findElement(By.xpath("//input[@name='groupNameLocal']"));
+		ElementLocalname.sendKeys("srimathi");
+		
+		WebElement ElementSitename = driver.findElement(By.xpath("//input[@id='officeSiteName']"));
+		ElementSitename.sendKeys("Chennai");
+		
+		WebElement Elementannualrevenue = driver.findElement(By.xpath("//input[@name='annualRevenue']"));
+		Elementannualrevenue.sendKeys("1200000");
+		
+		WebElement ElementIndustrybutton = driver.findElement(By.name("industryEnumId"));
+		Select dd1 = new Select(ElementIndustrybutton);
+		dd1.selectByValue("IND_SOFTWARE");
+		
+		WebElement Elementownership = driver.findElement(By.name("ownershipEnumId"));
+		Select dd2 = new Select(Elementownership);
+		dd2.selectByVisibleText("S-Corporation");
+		
+		WebElement ElementSource = driver.findElement(By.id("dataSourceId"));
+		Select dd3 = new Select(ElementSource);
+		dd3.selectByValue("LEAD_EMPLOYEE");
+		
+		
+		WebElement ElementMarketingcompaignID = driver.findElement(By.id("marketingCampaignId"));
+		Select dd4 = new Select(ElementMarketingcompaignID);
+		dd.selectByIndex(6);
+		
+		WebElement ElementgeneralStateProvinceGeoId = driver.findElement(By.id("generalStateProvinceGeoId"));
+		Select dd5 = new Select(ElementgeneralStateProvinceGeoId);
+		dd5.selectByValue("TX");
+		
+		WebElement ElementCreateaccountbutton = driver.findElement(By.xpath("//input[@onclick='submitFormWithSingleClick(this)']"));
+		ElementCreateaccountbutton.click();
+		
+		WebElement Elementerrormessage = driver.findElement(By.xpath("//li[@class='errorMessage']"));
+		Elementerrormessage.getText();
+		
+		driver.close();
+		
+		
+	}
+
+}
+
+
